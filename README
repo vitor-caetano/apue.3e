@@ -8,3 +8,37 @@ Please direct questions, suggestions, and bug reports to sar@apuebook.com.
 
 Steve Rago
 January 2013
+
+-----------------------------------------------
+
+Building only intro programs:
+
+$ cd apue.3e/intro
+$ make
+
+Building ls1 with debug information: (added -g flag) from https://gcc.gnu.org/onlinedocs/gcc/Debugging-Options.html
+
+$ gcc -g -ansi -I../include -Wall -DMACOS -D_DARWIN_C_SOURCE  ls1.c -o ls1  -L../lib -lapue
+
+To debug with visual code add an '(lldb) Launch' configuration:
+
+See launch.json file:
+
+{
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "name": "(lldb) Launch",
+                "type": "cppdbg",
+                "request": "launch",
+                "program": "${workspaceRoot}/intro/ls1",
+                "args": [],
+                "stopAtEntry": false,
+                "cwd": "${workspaceRoot}",
+                "environment": [],
+                "externalConsole": true,
+                "MIMode": "lldb"
+            }
+        ]
+    }
+
